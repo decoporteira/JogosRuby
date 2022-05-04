@@ -24,7 +24,7 @@ for tentativa in 1..limite_de_tentativas
         else
             puts "O número secreto é menor que " + chute
         end
-        
+        #teste
         puts "\n\n\n\n"
    
     end 
