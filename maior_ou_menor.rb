@@ -25,6 +25,7 @@ for tentativa in 1..limite_de_tentativas
             puts "O número secreto é menor que " + chute
         end
         #teste fdfd f
+        # teste 
         puts "\n\n\n\n"
    
     end 
