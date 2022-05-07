@@ -3,7 +3,7 @@ def da_boas_vindas
     puts "Qual é o seu nome?"
     nome = gets
     puts "\n\n\n\n\n\n\n"
-    puts "Começaremos o jogo para você, " + nome
+    puts "Começaremos o jogo para você, #{nome} "
 end
 
 def sorteia_numero_secreto
@@ -15,11 +15,11 @@ end
 
 def pede_um_numero(chutes, tentativa, limite_de_tentativas)
     puts "....................."
-    puts "Tentativa " + tentativa.to_s + " de " + limite_de_tentativas.to_s
-    puts "Chutes até agora: " + chutes.to_s
+    puts "Tentativa #{tentativa} de #{limite_de_tentativas}"
+    puts "Chutes até agora: #{chutes}"
     puts "Entre com o número"
     chute = gets
-    puts "Será que acertou? Você chutou " + chute
+    puts "Será que acertou? Você chutou #{chute}"
     chute.to_i
 end
 
@@ -53,8 +53,7 @@ for tentativa in 1..limite_de_tentativas
     chute = pede_um_numero(chutes, tentativa, limite_de_tentativas)
     
     
-    chutes[total_de_chutes] = chute
-    total_de_chutes += 1
+    chutes << chute
 
     if verifica_se_acertou(numero_secreto, chute) 
         break
@@ -63,5 +62,7 @@ end
 puts "Suas tentativas foram: "
 puts chutes
 
+
+# nome = gets.strip => isso tira o "enter" depois do palavra
 
 
