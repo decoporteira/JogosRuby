@@ -8,7 +8,9 @@ def da_boas_vindas
 end
 
 def pede_dificuldade
-    puts "Qual o nível de dificuldade deseja? 1 = fácil, 5 = difícil"
+    puts "Qual o nível de dificuldade deseja? "
+    puts "[1] Muito fácil | [2] Fácil | [3] Normal | [4] Difícil | [5] Impossível"
+    puts "Escolha: "
     dificuldade = gets.to_i
 end
 
@@ -26,7 +28,7 @@ def sorteia_numero_secreto(dificuldade)
         maximo = 200
     end
     puts "Escolhendo um número secreto entre 1 e #{maximo}"
-        sorteado = rand(maximo) + 1
+        sorteado = 10 #rand(maximo) + 1
     puts "Escolhido... que tal adivinhar nosso número secreto?"
     sorteado
 end
@@ -38,6 +40,7 @@ def pede_um_numero(chutes, tentativa, limite_de_tentativas)
     puts "Entre com o número"
     chute = gets
     puts "Será que acertou? Você chutou #{chute}"
+    chutes << chute.strip.to_i
     chute.to_i
 end
 
@@ -69,8 +72,9 @@ def joga(nome, dificuldade)
     total_de_chutes = 0
     for tentativa in 1..limite_de_tentativas     
         chute = pede_um_numero(chutes, tentativa, limite_de_tentativas)
-        chutes << chute
         
+       
+
         if nome == "Andre" #trapaça, sempre que "André for digitado no nome ele irá vencer"
             puts "Acertou!"
             break
@@ -81,6 +85,15 @@ def joga(nome, dificuldade)
 
         if verifica_se_acertou(numero_secreto, chute) 
             break
+        end
+        if tentativa == 5
+            if chute == (numero_secreto + 1) or chute == (numero_secreto - 1)
+                puts "!!!!! Você ganhou uma rodada extra pois quase acertou o número !!!!!"
+                limite_de_tentativas = 6
+                tentativa = 6
+                chute = pede_um_numero(chutes, tentativa, limite_de_tentativas)
+                verifica_se_acertou(numero_secreto, chute)
+            end 
         end
     end
     puts "Você ganhou #{pontos_ate_agora}"
@@ -104,5 +117,4 @@ end
 
 #strip 
 # nome = gets.strip => isso tira o "enter" depois do palavra
-
 
