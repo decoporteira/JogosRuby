@@ -40,8 +40,17 @@ def pede_um_numero(chutes, tentativa, limite_de_tentativas)
     puts "Entre com o número"
     chute = gets
     puts "Será que acertou? Você chutou #{chute}"
-    chutes << chute.strip.to_i
-    chute.to_i
+    if chutes.include? chute.to_i
+
+        puts "Você já chutou esse número, tente outro número!"
+        pede_um_numero(chutes, tentativa, limite_de_tentativas)
+      else
+        chutes << chute.strip.to_i
+        chute.to_i 
+      
+    end
+    
+    
 end
 
 def verifica_se_acertou(numero_secreto,chute)
