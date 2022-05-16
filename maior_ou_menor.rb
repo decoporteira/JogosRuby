@@ -82,8 +82,6 @@ def joga(nome, dificuldade)
     for tentativa in 1..limite_de_tentativas     
         chute = pede_um_numero(chutes, tentativa, limite_de_tentativas)
         
-       
-
         if nome == "Andre" #trapaça, sempre que "André for digitado no nome ele irá vencer"
             puts "Acertou!"
             break
@@ -103,16 +101,38 @@ def joga(nome, dificuldade)
                 tentativa = 6
                 chute = pede_um_numero(chutes, tentativa, limite_de_tentativas)
                 verifica_se_acertou(numero_secreto, chute)
+            else
+                @derrotas = perdeu()
+                
             end 
         end
     end
-    @derrotas = @derrotas + 1
+    
+    def perdeu
+        @derrotas = @derrotas +1
+        puts "Você perdeu!!!! Já foram #{@derrotas} derrotas" 
+        @derrotas   
+    end
+
     puts "Você ganhou #{pontos_ate_agora}"
-    puts "Você venceu #{@vitorias} vezes"
-    puts chutes
-    puts "Você perdeu!!!! Já foram #{@derrotas} derrotas"
+    puts "Você já venceu #{@vitorias} vezes"
+    #puts chutes
+    taxa_vitoria = taxa(@vitorias, @derrotas)
+    puts "Sua taxa de vitorias foi de #{taxa_vitoria}%"
     puts "O número secreto era: #{numero_secreto}"
 end
+
+def taxa(vitorias, derrotas)
+     #puts "Vitorias: #{vitorias}"
+     #puts "Derrotas: #{derrotas}"  
+     total_partidas = vitorias + derrotas
+     #puts "Total partidas: #{total_partidas}"  
+     taxa_vitoria = ((vitorias.to_f  / total_partidas) * 100.00)
+     #puts "Taxa de vitorias: #{taxa_vitoria}"
+     return taxa_vitoria 
+    
+end
+
 
 def nao_quer_jogar? 
     puts "Deseja jogar novamente? (S,N)"
