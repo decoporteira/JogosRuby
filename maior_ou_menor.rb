@@ -49,15 +49,15 @@ def pede_um_numero(chutes, tentativa, limite_de_tentativas)
         chute.to_i 
       
     end
-    
-    
+      
 end
 
-def verifica_se_acertou(numero_secreto,chute)
+def verifica_se_acertou(numero_secreto, chute)
     acertou = numero_secreto == chute
     
     if acertou   
-        puts "Você acertou, o número secreto era " + numero_secreto.to_s  
+        puts "Você acertou, o número secreto era " + numero_secreto.to_s   
+        
         return true
     end
     
@@ -93,6 +93,7 @@ def joga(nome, dificuldade)
         pontos_ate_agora = pontos_ate_agora - pontos_a_perder
 
         if verifica_se_acertou(numero_secreto, chute) 
+            @vitorias = @vitorias + 1
             break
         end
         if tentativa == 5
@@ -105,17 +106,21 @@ def joga(nome, dificuldade)
             end 
         end
     end
+    @derrotas = @derrotas + 1
     puts "Você ganhou #{pontos_ate_agora}"
+    puts "Você venceu #{@vitorias} vezes"
     puts chutes
+    puts "Você perdeu!!!! Já foram #{@derrotas} derrotas"
     puts "O número secreto era: #{numero_secreto}"
 end
 
-def nao_quer_jogar?
+def nao_quer_jogar? 
     puts "Deseja jogar novamente? (S,N)"
     quero_jogar = gets.strip
     nao_quero_jogar = quero_jogar.upcase == "N"
 end
-
+@vitorias = 0
+@derrotas = 0
 nome = da_boas_vindas
 dificuldade = pede_dificuldade
 
