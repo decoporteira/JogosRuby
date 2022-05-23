@@ -7,12 +7,8 @@ def joga(nome)
   pontos_ate_agora = 0
  
   while erros < 5
-    chute = pede_um_chute(chutes, erros) 
-    if chutes.include? chute
-      avisa_chute_repetido(chute)
-      next #pula para a próxima rodada do while
-    end
-      chutes << chute 
+    chute = pede_um_chute_valido(chutes, erros) 
+    chutes << chute 
     chutou_uma_unica_letra = chute.size == 1
     if chutou_uma_unica_letra
       total_encontrado = palavra_secreta.count(chute)
@@ -39,12 +35,23 @@ def joga(nome)
   avisa_pontos(pontos_ate_agora)
 end
 
-
-
-nome = da_boas_vindas
-
-loop do
-  joga nome
-  break if nao_quer_jogar?
+def pede_um_chute_valido(chutes, erros)
+  cabecalho_de_tentativas(chutes, erros)
+  loop do
+    chute = pede_um_chute
+    if chutes.include? chute
+      avisa_chute_repetido(chute)
+    else
+      return chute
+    end
+  end
 end
 
+def joga_da_forca
+  nome = da_boas_vindas
+
+  loop do
+    joga nome
+    break if nao_quer_jogar?
+  end
+end

@@ -6,13 +6,10 @@ def da_boas_vindas
   nome
 end
 
-def pede_um_chute (chutes, erros)
-  puts "\n\n\n\n"
-  puts "Erros até agora: #{erros}"
-  puts "Chutes até agora: #{chutes}"
-  puts "Entre com a letra ou palavra"
+def pede_um_chute
+  puts "Entre com a letra ou palavra?:"
   chute = gets.strip
-  puts "Será que acertou? Você chutou #{chute}"
+  puts "Será que acertou? Você chutou?: #{chute}"
   chute
 end
 
@@ -30,7 +27,7 @@ def sorteia_palavra_secreta
 end
 
 def avisa_chute_repetido(chute)
-  puts "Você já chutou: #{chute}"
+  puts "Você já chutou?: #{chute}"
 end
 
 def avisa_letra_nao_encontrada(chute)
@@ -51,4 +48,10 @@ end
 
 def avisa_pontos(pontos_ate_agora)
   puts "Você ganhou #{pontos_ate_agora} pontos."
+end
+
+def cabecalho_de_tentativas(chutes, erros)
+  puts "\n\n\n\n"
+  puts "Erros até agora: #{erros}"
+  puts "Chutes até agora: #{chutes}"
 end
